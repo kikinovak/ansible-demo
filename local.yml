@@ -5,9 +5,9 @@
 
   tasks:
 
-  - name: Install htop
+  - name: Install packages
     apt: 
-      name: {{item}}
+      name: "{{item}}"
     with_items:
       - htop
       - mc
