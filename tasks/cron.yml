@@ -4,7 +4,7 @@
   cron:
     user: ansible
     name: Provisioned by Ansible
-    minute: "*/5"
+    minute: "*/15"
     job: "/usr/bin/ansible-pull -o -U https://github.com/kikinovak/\
          ansible-demo.git > /dev/null"
 
