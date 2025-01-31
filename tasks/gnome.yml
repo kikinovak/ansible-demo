@@ -11,7 +11,7 @@
 - name: Set GTK theme
   dconf: 
     key: "/org/gnome/desktop/interface/gtk-theme"
-    value: "Arc"
+    value: "'Arc'"
   become_user: kikinovak
 
 ...
