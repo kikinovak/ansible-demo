@@ -4,4 +4,8 @@
   apt:
     name: arc-theme
 
+- name: Set GTK theme
+  become_user: kikinovak
+  dconf: key="/org/gnome/desktop/interface/gtk-theme" value="'Arc'"
+
 ...
