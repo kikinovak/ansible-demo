@@ -1,11 +1,17 @@
 ---  # gnome.yml
 
+- name: Install python3-psutil package
+  apt:
+    name: python3-psutil
+
 - name: Install Arc theme
   apt:
     name: arc-theme
 
 - name: Set GTK theme
+  dconf: 
+    key: /org/gnome/desktop/interface/gtk-theme
+    value: Arc
   become_user: kikinovak
-  dconf: key="/org/gnome/desktop/interface/gtk-theme" value="'Arc'"
 
 ...
