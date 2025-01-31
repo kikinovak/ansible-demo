@@ -1,0 +1,7 @@
+---  # gnome.yml
+
+- name: Install Arc theme
+  apt:
+    name: arc-theme
+
+...
