@@ -7,6 +7,10 @@
 
   - name: Install htop
     apt: 
-      name: htop
+      name: {{item}}
+    with_items:
+      - htop
+      - mc
+      - tmux
 
 ...
