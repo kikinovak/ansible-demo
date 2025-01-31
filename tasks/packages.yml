@@ -1,0 +1,10 @@
+---  # tasks/packages.yml
+
+- name: Install packages
+  apt:
+    name:
+      - htop
+      - mc
+      - tmux
+
+...
