@@ -25,7 +25,7 @@
 - name: Set GNOME wallpaper
   dconf:
     key: "/org/gnome/desktop/background/picture-uri"
-    value: "''file:///home/kikinovak/.wallpaper.jpg'"
+    value: "'file:///home/kikinovak/.wallpaper.jpg'"
   become_user: kikinovak
 
 ...
