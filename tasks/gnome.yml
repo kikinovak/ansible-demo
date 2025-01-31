@@ -14,4 +14,18 @@
     value: "'Arc'"
   become_user: kikinovak
 
+- name: Copy wallpaper file
+  copy:
+    src: files/wallpaper.jpg
+    dest: /home/kikinovak/.wallpaper.jpg
+    owner: kikinovak
+    group: kikinovak
+    mode: 0600
+
+- name: Set GNOME wallpaper
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "''file:///home/kikinovak/.wallpaper.jpg'"
+  become_user: kikinovak
+
 ...
