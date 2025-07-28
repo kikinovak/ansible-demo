@@ -8,6 +8,12 @@
 
   tasks:
 
+    - name: Enable SELinux in enforcing mode
+      ansible.posix.selinux:
+        policy: targeted
+        state: enforcing
+      notify: Relabel filesystem
+
     - name: Configure Bash shell for root
       ansible.builtin.copy:
         src: bashrc-root
@@ -45,5 +51,12 @@
         owner: root
         group: root
         mode: 0644
+
+  handlers:
+
+    - name: Relabel filesystem
+      ansible.builtin.file:
+        path: /.autorelabel
+        state: touch
 
 ...
