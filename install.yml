@@ -8,7 +8,12 @@
 
   tasks:
 
-    - debug:
-        msg: Hello world
+    - name: Configure Bash shell for root
+      ansible.builtin.copy:
+        src: bashrc-root
+        dest: /root/.bashrc
+        owner: root
+        group: root
+        mode: 0644
 
 ...
