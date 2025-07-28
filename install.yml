@@ -1,0 +1,14 @@
+#!/usr/bin/ansible-playbook --inventory=localhost,
+#
+# install.yml
+---
+- hosts: localhost
+  connection: local
+  force_handlers: true
+
+  tasks:
+
+    - debug:
+        msg: Hello world
+
+...
