@@ -52,7 +52,57 @@
         group: root
         mode: 0644
 
-# Dépôts officiels
+    - name: Configure Rocky Linux BaseOS repository
+      ansible.builtin.yum_repository:
+        name: baseos
+        file: rocky
+        description: BaseOS
+        baseurl: 
+          - http://mirror.in2p3.fr/pub/linux/rocky/$releasever/BaseOS/$basearch/os/
+          - http://dl.rockylinux.org/$contentdir/$releasever/BaseOS/$basearch/os/
+        gpgcheck: true
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
+        enabled: true
+        priority: 1
+
+    - name: Configure Rocky Linux AppStream repository
+      ansible.builtin.yum_repository:
+        name: appstream
+        file: rocky
+        description: AppStream
+        baseurl: 
+          - http://mirror.in2p3.fr/pub/linux/rocky/$releasever/AppStream/$basearch/os/
+          - http://dl.rockylinux.org/$contentdir/$releasever/AppStream/$basearch/os/
+        gpgcheck: true
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
+        enabled: true
+        priority: 1
+
+    - name: Configure Rocky Linux CRB repository
+      ansible.builtin.yum_repository:
+        name: crb
+        file: rocky
+        description: CRB
+        baseurl: 
+          - http://mirror.in2p3.fr/pub/linux/rocky/$releasever/CRB/$basearch/os/
+          - http://dl.rockylinux.org/$contentdir/$releasever/CRB/$basearch/os/
+        gpgcheck: true
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
+        enabled: true
+        priority: 1
+
+    - name: Configure Rocky Linux Extras repository
+      ansible.builtin.yum_repository:
+        name: extras
+        file: rocky-extras
+        description: Extras
+        baseurl: 
+          - http://mirror.in2p3.fr/pub/linux/rocky/$releasever/extras/$basearch/os/
+          - http://dl.rockylinux.org/$contentdir/$releasever/extras/$basearch/os/
+        gpgcheck: true
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
+        enabled: true
+        priority: 1
 
 # Dépôts EPEL
 
