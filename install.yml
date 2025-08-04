@@ -123,6 +123,24 @@
         enabled: true
         priority: 10
 
+    - name: Configure OpenH264 repository
+      ansible.builtin.yum_repository:
+        name: openh264
+        file: epel-cisco-openh264
+        description: OpenH264
+        baseurl: 
+          - https://codecs.fedoraproject.org/openh264/34/$basearch/os/
+        gpgcheck: true
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-$releasever
+        enabled: true
+        priority: 10
+
+    - name: Rename EPEL Cisco OpenH264 repository
+      ansible.builtin.yum_repository:
+        name: epel-cisco-openh264
+        file: epel-cisco-openh264
+        state: absent
+
 # Dépôts ELRepo
 
 # Dépôts RPMFusion
