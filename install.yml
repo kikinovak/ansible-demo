@@ -104,8 +104,6 @@
         enabled: true
         priority: 1
 
-# Dépôts EPEL
-
     - name: Install EPEL release package
       ansible.builtin.dnf:
         name: epel-release
@@ -141,7 +139,62 @@
         file: epel-cisco-openh264
         state: absent
 
-# Dépôts ELRepo
+    - name: Install ELRepo release package
+      ansible.builtin.dnf:
+        name: elrepo-release
+        state: present
+
+    - name: Configure ELRepo repository
+      ansible.builtin.yum_repository:
+        name: elrepo
+        file: elrepo
+        description: ELRepo
+        baseurl: 
+          - http://mirror.in2p3.fr/pub/linux/elrepo/elrepo/el9/$basearch/
+          - http://elrepo.org/linux/elrepo/el9/$basearch/
+        gpgcheck: true
+        gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org file:///etc/pki/rpm-gpg/RPM-GPG-KEY-v2-elrepo.org"
+        enabled: true
+        priority: 10
+
+    - name: Configure ELRepo Testing repository
+      ansible.builtin.yum_repository:
+        name: elrepo-testing
+        file: elrepo
+        description: ELRepo Testing
+        baseurl: 
+          - http://mirror.in2p3.fr/pub/linux/elrepo/testing/el9/$basearch/
+          - http://elrepo.org/linux/testing/el9/$basearch/
+        gpgcheck: true
+        gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org file:///etc/pki/rpm-gpg/RPM-GPG-KEY-v2-elrepo.org"
+        enabled: false
+        priority: 10
+
+    - name: Configure ELRepo Kernel repository
+      ansible.builtin.yum_repository:
+        name: elrepo-kernel
+        file: elrepo
+        description: ELRepo Kernel
+        baseurl: 
+          - http://mirror.in2p3.fr/pub/linux/elrepo/kernel/el9/$basearch/
+          - http://elrepo.org/linux/kernel/el9/$basearch/
+        gpgcheck: true
+        gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org file:///etc/pki/rpm-gpg/RPM-GPG-KEY-v2-elrepo.org"
+        enabled: false
+        priority: 10
+
+    - name: Configure ELRepo Extras repository
+      ansible.builtin.yum_repository:
+        name: elrepo-extras
+        file: elrepo
+        description: ELRepo Extras
+        baseurl: 
+          - http://mirror.in2p3.fr/pub/linux/elrepo/extras/el9/$basearch/
+          - http://elrepo.org/linux/extras/el9/$basearch/
+        gpgcheck: true
+        gpgkey: "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org file:///etc/pki/rpm-gpg/RPM-GPG-KEY-v2-elrepo.org"
+        enabled: false
+        priority: 10
 
 # Dépôts RPMFusion
 
