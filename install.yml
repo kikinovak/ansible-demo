@@ -52,6 +52,26 @@
         group: root
         mode: 0644
 
+# Dépôts officiels
+
+# Dépôts EPEL
+
+# Dépôts ELRepo
+
+# Dépôts RPMFusion
+
+# Installer le groupe de paquets Base
+
+# Installer quelques outils supplémentaires
+
+# Installer X11 + polices de base
+
+# Installer KDE de base
+
+# Installer GDM pour KDE
+
+# Installer une panoplie d'applications
+
   handlers:
 
     - name: Relabel filesystem
