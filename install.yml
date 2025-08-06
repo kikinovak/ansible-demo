@@ -196,6 +196,53 @@
         enabled: false
         priority: 10
 
+    - name: Import RPMFusion Free GPG key
+      ansible.builtin.rpm_key:
+        key: http://mirror.in2p3.fr/pub/linux/rpmfusion/free/el/RPM-GPG-KEY-rpmfusion-free-el-9
+        state: present
+
+    - name: Install RPMFusion Free release package
+      ansible.builtin.dnf:
+        name: rpmfusion-free-release
+        state: present
+
+    - name: Configure RPMFusion Free release package
+      ansible.builtin.yum_repository:
+        name: rpmfusion-free
+        file: rpmfusion-free-updates
+        description: RPMFusion Free
+        baseurl:
+          - http://mirror.in2p3.fr/pub/linux/rpmfusion/free/el/updates/9/$basebarch/
+          - http://download1.rpmfusion.org/free/el/updates/9/$basearch/
+        gpgcheck: true
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-el-9
+        enabled: true
+        priority: 10
+
+    - name: Install RPMFusion Free Tainted release package
+      ansible.builtin.dnf:
+        name: rpmfusion-free-release-tainted
+        state: present
+
+    - name: Configure RPMFusion Free Tainted release package
+      ansible.builtin.yum_repository:
+        name: rpmfusion-free-tainted
+        file: rpmfusion-free-tainted
+        description: RPMFusion Free Tainted
+        baseurl:
+          - http://mirror.in2p3.fr/pub/linux/rpmfusion/free/el/tainted/9/$basebarch/
+          - http://download1.rpmfusion.org/free/el/tainted/9/$basearch/
+        gpgcheck: true
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-el-9
+        enabled: true
+        priority: 10
+
+    - name: Rename RPM Fusion Free repository
+      ansible.builtin.yum_repository:
+        name: rpmfusion-free-updates
+        file: rpmfusion-free-updates
+        state: absent
+
 # Dépôts RPMFusion
 
 # Installer le groupe de paquets Base
