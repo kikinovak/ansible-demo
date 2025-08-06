@@ -296,6 +296,108 @@
         state: present
         install_weak_deps: false
 
+    - name: Install FFmpeg
+      ansible.builtin.dnf:
+        name: ffmpeg
+        state: present
+        install_weak_deps: false
+
+    - name: Install basic KDE desktop
+      ansible.builtin.dnf:
+        name:
+          - adwaita-gtk2-theme
+          - bluedevil
+          - breeze-icon-theme
+          - colord-kde
+          - cups-pk-helper
+          - dolphin
+          - ffmpegthumbs
+          - gnome-keyring-pam
+          - gwenview
+          - initial-setup-gui
+          - kamera
+          - kate
+          - kcalc
+          - kcharselect
+          - kde-gtk-config
+          - kde-print-manager
+          - kde-settings-pulseaudio
+          - kdegraphics-thumbnailers
+          - kdeplasma-addons
+          - kdialog
+          - kdnssd
+          - keditbookmarks
+          - kf5-akonadi-server
+          - kf5-akonadi-server-mysql
+          - kf5-baloo-file
+          - kf5-kipi-plugins
+          - khelpcenter
+          - khotkeys
+          - kinfocenter
+          - kmenuedit
+          - konsole5
+          - kscreen
+          - kscreenlocker
+          - ksshaskpass
+          - kwin
+          - okular
+          - pam-kwallet
+          - phonon-qt5-backend-gstreamer
+          - plasma-breeze
+          - plasma-desktop
+          - plasma-desktop-doc
+          - plasma-nm
+          - plasma-nm-l2tp
+          - plasma-nm-openconnect
+          - plasma-nm-openswan
+          - plasma-nm-openvpn
+          - plasma-nm-pptp
+          - plasma-pa
+          - plasma-systemmonitor
+          - plasma-thunderbolt
+          - plasma-workspace
+          - plasma-workspace-geolocation
+          - plasma-workspace-wallpapers
+          - polkit-kde
+          - qt5-qtbase-gui
+          - qt5-qtdeclarative
+          - spectacle
+          - udisks2
+          - xorg-x11-drv-libinput
+          - plasma-workspace-x11
+          - sddm
+          - sddm-breeze
+          - sddm-kcm
+        state: present
+        install_weak_deps: false
+
+    - name: Remove useless packages
+      ansible.builtin.dnf:
+        name:
+          - PackageKit-command-not-found
+          - akregator
+          - firewall-config
+          - glibc-all-langpacks
+          - kaddressbook
+          - kcolorchooser
+          - kde-partitionmanager
+          - kfind
+          - kgpg
+          - kmag
+          - kmail
+          - kmousetool
+          - kmouth
+          - kontact
+          - korganizer
+          - kruler
+          - kwalletmanager5
+          - kwrite
+          - plasma-discover
+          - plasma-discover-notifier
+          - plasma-drkonqi
+        state: absent
+        autoremove: true
+
 # Installer le groupe de paquets Base
 
 # Installer quelques outils supplémentaires
