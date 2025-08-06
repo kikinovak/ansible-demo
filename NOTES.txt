@@ -1,0 +1,15 @@
+NOTES
+=====
+
+RPMFusion :
+
+- rpmfusion-free              RPM Fusion Free
+
+- rpmfusion-free-tainted      RPM Fusion Free Tainted
+
+- rpmfusion-nonfree           RPM Fusion Nonfree
+
+- rpmfusion-nonfree-tainted   RPM Fusion Nonfree Tainted
+
+- rpmfusion-tainted           RPM Fusion Tainted
+
