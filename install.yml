@@ -278,6 +278,24 @@
         state: present
         install_weak_deps: false
 
+    - name: Install X11 package group
+      ansible.builtin.dnf:
+        name: "@base-x"
+        state: present
+        install_weak_deps: false
+
+    - name: Install basic fonts for X11
+      ansible.builtin.dnf:
+        name: xorg-x11-fonts-*
+        state: present
+        install_weak_deps: false
+
+    - name: Install setxkbmap tool
+      ansible.builtin.dnf:
+        name: setxkbmap
+        state: present
+        install_weak_deps: false
+
 # Installer le groupe de paquets Base
 
 # Installer quelques outils supplémentaires
