@@ -256,7 +256,27 @@
         file: rpmfusion-free-updates
         state: absent
 
-# Dépôts RPMFusion
+    - name: Install Core package group
+      ansible.builtin.dnf:
+        name: "@Core"
+        state: present
+        install_weak_deps: false
+
+    - name: Install Base package group
+      ansible.builtin.dnf:
+        name: "@Base"
+        state: present
+        install_weak_deps: false
+
+    - name: Install additional command-line tools
+      ansible.builtin.dnf:
+        name:
+          - ntfs-3g
+          - ntfsprogs
+          - rtorrent
+          - unrar-free
+        state: present
+        install_weak_deps: false
 
 # Installer le groupe de paquets Base
 
