@@ -14,6 +14,19 @@
         state: enforcing
       notify: Relabel filesystem
 
+    - name: Install basic language packs
+      ansible.builtin.dnf:
+        name:
+          - glibc-langpack-de
+          - glibc-langpack-en
+          - glibc-langpack-fr
+        state: present
+
+    - name: Remove huge global language pack
+      ansible.builtin.dnf:
+        name: glibc-all-langpacks
+        state: absent
+
     - name: Configure Bash shell for root
       ansible.builtin.copy:
         src: bashrc-root
