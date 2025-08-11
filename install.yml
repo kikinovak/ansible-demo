@@ -250,11 +250,64 @@
         enabled: true
         priority: 10
 
-    - name: Rename RPM Fusion Free repository
+    - name: Rename RPMFusion Free repository
       ansible.builtin.yum_repository:
         name: rpmfusion-free-updates
         file: rpmfusion-free-updates
         state: absent
+
+    - name: Import RPMFusion NonFree GPG key
+      ansible.builtin.rpm_key:
+        key: http://mirror.in2p3.fr/pub/linux/rpmfusion/nonfree/el/RPM-GPG-KEY-rpmfusion-nonfree-el-9
+        state: present
+
+    - name: Install RPMFusion NonFree Release package
+      ansible.builtin.dnf:
+        name: https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-9.noarch.rpm
+        state: present
+
+    - name: Rename RPMFusion Nonfree release repository
+      ansible.builtin.yum_repository:
+        name: rpmfusion-nonfree-updates
+        file: rpmfusion-nonfree-updates
+        state: absent
+
+    - name: Configure RPMFusion NonFree repository
+      ansible.builtin.yum_repository:
+        name: rpmfusion-nonfree
+        file: rpmfusion-nonfree-updates
+        description: RPMFusion NonFree
+        baseurl:
+          - http://mirror.in2p3.fr/pub/linux/rpmfusion/nonfree/el/updates/$releasever/$basearch/
+          - https://download1.rpmfusion.org/nonfree/el/updates/$releasever/$basearch/
+        gpgcheck: true
+        gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-el-$releasever
+        enabled: true
+        priority: 20
+
+    - name: Install RPMFusion Nonfree Tainted release
+      ansible.builtin.dnf:
+        name: rpmfusion-nonfree-release-tainted
+        state: present
+
+    - name: Configure RPMFusion NonFree Tainted repository
+      ansible.builtin.yum_repository:
+        name: rpmfusion-nonfree-tainted
+        file: rpmfusion-nonfree-tainted
+        description: RPMFusion NonFree Tainted
+        baseurl:
+          - http://mirror.in2p3.fr/pub/linux/rpmfusion/nonfree/el/tainted/$releasever/$basearch/debug/
+          - https://download1.rpmfusion.org/nonfree/el/tainted/$releasever/$basearch/
+        gpgcheck: true
+        gpgkey: file:////etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-nonfree-el-$releasever
+        enabled: true
+        priority: 20
+
+    - name: Update all packages
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        install_weak_deps: false
 
     - name: Install Core package group
       ansible.builtin.dnf:
